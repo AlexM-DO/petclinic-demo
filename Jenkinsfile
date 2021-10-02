@@ -4,8 +4,8 @@ pipeline {
 	stages{
 		stage('clone dev'){
 			steps{
-				sh 'git clone --branch dev https://github.com/AlexM-DO/petclinic-demo.git'}
-				sh 'cd petclinic-demo'}
+				sh 'git clone --branch dev https://github.com/AlexM-DO/petclinic-demo.git'
+				sh 'cd petclinic-demo'}}
 		stage('build and test'){
 			steps{
 				sh 'mvn clean package'
