@@ -1,5 +1,5 @@
 pipeline {
-    agent agent1
+    agent {agent1}
 	
 	stages{
 	       stage ('clone dev'){
@@ -10,6 +10,10 @@ pipeline {
 		stage ('build and test'){
 				   steps{
 					sh 'mvn clean package'
-					junit '**/target/surefire-reports/TEST-*.xml'}}}
+					junit '**/target/surefire-reports/TEST-*.xml'}}
+		stage {'clear project dir'}{
+				   steps{
+					sh 'cd ..'
+					sh 'rm -rf petclinic-demo'}}
 
 }
