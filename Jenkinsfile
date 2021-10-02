@@ -11,9 +11,10 @@ pipeline {
 				   steps{
 					sh 'mvn clean package'
 					junit '**/target/surefire-reports/TEST-*.xml'}}
-		stage {'clear project dir'}{
+		stage ('clear project dir'){
 				   steps{
 					sh 'cd ..'
 					sh 'rm -rf petclinic-demo'}}
 
+}
 }
