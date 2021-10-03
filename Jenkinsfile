@@ -22,4 +22,4 @@ pipeline {
                                 sh 'sudo docker run -d -p 8080:8080 --name java-petclinic java-pet-clinic:latest'}}
         }
 }
-// triger test1, test2
+// triger test1
