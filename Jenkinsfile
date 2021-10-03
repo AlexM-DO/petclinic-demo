@@ -16,19 +16,19 @@ pipeline {
                        // agent {label 'agent1'}
                         steps{
                                 sh 'sudo docker build --tag java-pet-clinic-test:latest .'}}
-                stage('Run production test container'){
+                stage('Run new test container'){
                       //  agent {label 'agent1'}
                         steps{
-                                sh 'sudo docker run -d -p 8585:8585 --name java-petclinic-test java-pet-clinic-test:latest'}}
+                                sh 'sudo docker run -d -p 22:22 --name java-petclinic-test java-pet-clinic-test:latest'}}
 								
                 stage('Build new production docker image'){
                        // agent {label 'prod'}
                         steps{
                                 sh 'sudo docker build --tag java-pet-clinic:latest .'}}
-                stage('Run production docker container'){
+                stage('Run new production docker container'){
                       //  agent {label 'prod'}
                         steps{
-                                sh 'sudo docker run -d -p 8080:8080 --name java-petclinic java-pet-clinic:latest'}}
+                                sh 'sudo docker run -d -p 80:80 --name java-petclinic java-pet-clinic:latest'}}
         }
 }
 // triger test1
