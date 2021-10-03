@@ -12,23 +12,23 @@ pipeline {
                         steps{
                                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){ //if docker images and containers not created
                                 sh 'sudo docker stop $(sudo docker ps -aq) && sudo docker rm -vf $(sudo docker ps -aq) && sudo docker rmi -f $(sudo docker images -aq) && sudo docker volume prune -f'}}}
-				stage('Build new test docker image'){
+				stage('Build new production image'){
                        // agent {label 'agent1'}
                         steps{
-                                sh 'sudo docker build --tag java-pet-clinic-test:latest .'}}
-                stage('Run new test container'){
+                                sh 'sudo docker build --tag java-pet-clinic:latest .'}}
+                stage('Run new production container'){
                       //  agent {label 'agent1'}
                         steps{
-                                sh 'sudo docker run -d -p 22:22 --name java-petclinic-test java-pet-clinic-test:latest'}}
+                                sh 'sudo docker run -d -p 8080:8080 --name java-petclinic java-pet-clinic:latest'}}
 								
-                stage('Build new production docker image'){
+                stage('Build new test image'){
                        // agent {label 'prod'}
                         steps{
-                                sh 'sudo docker build --tag java-pet-clinic:latest .'}}
-                stage('Run new production docker container'){
+                                sh 'sudo docker build --tag java-pet-clinic-test:latest .'}}
+                stage('Run new production container'){
                       //  agent {label 'prod'}
                         steps{
-                                sh 'sudo docker run -d -p 80:80 --name java-petclinic java-pet-clinic:latest'}}
+                                sh 'sudo docker run -d -p 8081:8081 --name java-petclinic-test java-pet-clinic-test:latest'}}
         }
 }
 // triger test1
