@@ -19,7 +19,7 @@ pipeline {
                 stage('Run docker container'){
                         agent {label 'prod'}
                         steps{
-                                sh 'sudo docker docker run --name java-petclinic d -p 8080:8080 java-pet-clinic:latest'}}
+                                sh 'sudo docker docker run d -p 8080:8080 --name java-petclinic java-pet-clinic:latest'}}
         }
 }
 // triger test1, 
