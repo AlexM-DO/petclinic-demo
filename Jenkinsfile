@@ -21,14 +21,6 @@ pipeline {
                         steps{
                                 sh 'sudo docker run -d -p 8080:8080 --name java-petclinic java-pet-clinic:latest'}}
 								
-                stage('Build new test image'){
-                       // agent {label 'prod'}
-                        steps{
-                                sh 'sudo docker build --tag java-pet-clinic-test:latest .'}}
-                stage('Run new test container'){
-                      //  agent {label 'prod'}
-                        steps{
-                                sh 'sudo docker run -d -p 8081:8081 --name java-petclinic-test java-pet-clinic-test:latest'}}
         }
 }
 // triger test1
