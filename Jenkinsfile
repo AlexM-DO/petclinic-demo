@@ -27,3 +27,4 @@ pipeline {
                                 sh 'docker docker run --name java-petclinic d -p 8080:8080 java-pet-clinic:latest'}}
         }
 }
+// triger test1, 
