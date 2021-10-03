@@ -15,7 +15,7 @@ pipeline {
                 stage('Build new docker image'){
                         agent {label 'prod'}
                         steps{
-                                sh 'sudo docker build --tag java-pet-clinic:latest'}}
+                                sh 'sudo docker build --tag java-pet-clinic:latest .'}}
                 stage('Run docker container'){
                         agent {label 'prod'}
                         steps{
