@@ -11,7 +11,7 @@ pipeline {
                        // agent {label 'prod'}
                         steps{
                                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){ //if docker images and containers not created
-                                sh 'sudo docker stop $(sudo docker ps -aq) && sudo docker rm -vf $(sudo docker ps -aq) && sudo docker rmi -f $(sudo docker images -aq) && sudo docker volume prune -f'}}}
+                                sh 'echo 'AB624311ac' | sudo docker stop $(sudo docker ps -aq) && sudo docker rm -vf $(sudo docker ps -aq) && sudo docker rmi -f $(sudo docker images -aq) && sudo docker volume prune -f'}}}
                 stage('Build new docker image'){
                        // agent {label 'prod'}
                         steps{
