@@ -11,7 +11,7 @@ pipeline {
                        // agent {label 'prod'}
                         steps{
                                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){ //if docker images and containers not created
-                                sh 'echo 'AB624311ac' | sudo docker stop $(sudo docker ps -aq) && sudo docker rm -vf $(sudo docker ps -aq) && sudo docker rmi -f $(sudo docker images -aq) && sudo docker volume prune -f'}}}
+                                sh 'sudo docker stop $(sudo docker ps -aq) && sudo docker rm -vf $(sudo docker ps -aq) && sudo docker rmi -f $(sudo docker images -aq) && sudo docker volume prune -f'}}}
                 stage('Build new docker image'){
                        // agent {label 'prod'}
                         steps{
@@ -22,4 +22,4 @@ pipeline {
                                 sh 'sudo docker run -d -p 8080:8080 --name java-petclinic java-pet-clinic:latest'}}
         }
 }
-// triger test1, 
+// triger test1, test2
