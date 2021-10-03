@@ -8,7 +8,7 @@ pipeline {
 				junit '**/target/surefire-reports/TEST-*.xml'}}
 }
         agent {label 'prod'}
-        stages{
+          stages{
                 stage('Clone repo to dev'){
                         steps{
                                 sh 'git clone https://github.com/AlexM-DO/petclinic-demo.git'
@@ -20,7 +20,7 @@ pipeline {
                         steps{
                                 sh 'docker build --tag java-pet-clinic:latest'}}
                 stage('Run docker container'){
-                        step{
+                        steps{
                                 sh 'docker docker run --name java-petclinic d -p 8080:8080 java-pet-clinic:latest'}}
         }
 }
