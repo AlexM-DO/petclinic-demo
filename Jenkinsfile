@@ -25,7 +25,7 @@ pipeline {
                        // agent {label 'prod'}
                         steps{
                                 sh 'sudo docker build --tag java-pet-clinic-test:latest .'}}
-                stage('Run new production container'){
+                stage('Run new test container'){
                       //  agent {label 'prod'}
                         steps{
                                 sh 'sudo docker run -d -p 8081:8081 --name java-petclinic-test java-pet-clinic-test:latest'}}
