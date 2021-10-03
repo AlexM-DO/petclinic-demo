@@ -6,8 +6,7 @@ pipeline {
 			steps{
 				sh 'mvn clean package'
 				junit '**/target/surefire-reports/TEST-*.xml'}}
-}
-          stages{
+                
                 stage('Clone repo to dev'){
                         agent {label 'prod'}
                         steps{
