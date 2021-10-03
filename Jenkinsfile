@@ -1,6 +1,6 @@
 pipeline {
-    agent {label 'worker'}
-	
+   // agent {label 'worker'}
+      agent {label 'agent1'}
 	stages{
 	stage('clear project dir start'){
 			steps{
