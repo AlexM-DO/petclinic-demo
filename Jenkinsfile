@@ -22,7 +22,7 @@ pipeline {
         }
          post {
                         success {junit '**/target/surefire-reports/TEST-*.xml'
-                        archiveArtifacts artifacts: 'pet-clinic-image-$BUILD_TIMESTAMP.zip', fingerprint: true
+                        archiveArtifacts artifacts: 'pet-clinic-image-"$BUILD_TIMESTAMP".zip', fingerprint: true
                         sh 'sudo docker rmi -f java-pet-clinic:latest'
                         
                 }
