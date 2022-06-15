@@ -4,22 +4,16 @@ pipeline {
 	stages{
 		stage('build and test'){
 			steps{
-				sh 'mvn clean package'
-				junit '**/target/surefire-reports/TEST-*.xml'}}
-                
-                stage('Clear docker projects'){
-                       // agent {label 'prod'}
-                        steps{
-                                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){ //if docker images and containers not created
-                                sh 'sudo docker stop $(sudo docker ps -aq) && sudo docker rm -vf $(sudo docker ps -aq) && sudo docker rmi -f $(sudo docker images -aq) && sudo docker volume prune -f'}}}
-				stage('Build new production image'){
-                       // agent {label 'agent1'}
-                        steps{
-                                sh 'sudo docker build --tag java-pet-clinic:latest .'}}
-                stage('Run new production container'){
-                      //  agent {label 'agent1'}
-                        steps{
-                                sh 'sudo docker run -d -p 8080:8080 --name java-petclinic java-pet-clinic:latest'}}
+				sh 'mvn clean package' }}  
+                stage('Build Docker image'){
+                      //  agent {label 'Built-In Node'}
+                         steps{
+                                sh 'sudo docker build --tag java-pet-clinic:$BUILD_VERSION .'
+                                sh 'sudo docker image save java-pet-clinic:$BUILD_VERSION > pet-clinic-image.zip'}}
+                post {
+                        Always {junit '**/target/surefire-reports/TEST-*.xml'}
+                        archiveArtifacts artifacts: 'pet-clinic-image.zip', fingerprint: true
+                }
 								
         }
 }
