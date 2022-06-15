@@ -18,8 +18,8 @@ pipeline {
         }
          post {
                         success {junit '**/target/surefire-reports/TEST-*.xml'
-                                }
                         archiveArtifacts artifacts: 'pet-clinic-image.zip', fingerprint: true
                 }
+         }
 }
 // triger test1
