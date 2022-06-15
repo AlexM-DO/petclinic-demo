@@ -1,5 +1,5 @@
 pipeline {
-      agent {label 'any'}
+      agent any
    // agent {label 'agent1'}
 	stages{
 		stage('build and test'){
@@ -8,7 +8,7 @@ pipeline {
                         }
                 }  
                 stage('Build Docker image'){
-                      //  agent {label 'any'}
+                      //  agent any
                          steps{
                                 sh 'sudo docker build --tag java-pet-clinic:$BUILD_VERSION .'
                                 sh 'sudo docker image save java-pet-clinic:$BUILD_VERSION > pet-clinic-image.zip'
