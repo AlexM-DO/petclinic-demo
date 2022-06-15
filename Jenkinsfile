@@ -15,15 +15,18 @@ pipeline {
                       //  agent any
                          steps{
                                 sh 'sudo docker build --tag java-pet-clinic:latest .'
-                                sh 'sudo docker image save java-pet-clinic:latest > pet-clinic-image-$BUILD_TIMESTAMP.zip'
-                                archiveArtifacts artifacts: 'pet-clinic-image-"$BUILD_TIMESTAMP".zip', fingerprint: true
+                                sh 'sudo mkdir ./artifact/'
+                                sh 'sudo docker image save java-pet-clinic:latest > ./artifacts/pet-clinic-image-$BUILD_TIMESTAMP.zip'
+                                
                          }
-                }
+                }ls -la
 								
         }
          post {
                         success {junit '**/target/surefire-reports/TEST-*.xml'
+                        archiveArtifacts artifacts: './artifacts', fingerprint: true
                         sh 'sudo docker rmi -f java-pet-clinic:latest'
+                        sh 'sudo rm -rf ./artifacts'
                         
                 }
          }
