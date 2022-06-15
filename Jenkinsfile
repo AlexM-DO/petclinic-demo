@@ -1,4 +1,3 @@
-def Build_date_time = 
 pipeline {
       agent any
       tools { 
