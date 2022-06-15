@@ -2,7 +2,7 @@ pipeline {
       agent any
       tools { 
       maven 'M3' 
-      jdk openjdk 11
+      jdk 'java9'
     }
    // agent {label 'agent1'}
 	stages{
