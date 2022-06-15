@@ -1,5 +1,9 @@
 pipeline {
       agent any
+      tools { 
+      maven 'M3' 
+      jdk openjdk 11
+    }
    // agent {label 'agent1'}
 	stages{
 		stage('build and test'){
