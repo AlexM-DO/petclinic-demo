@@ -1,3 +1,4 @@
+def Build_date_time = 
 pipeline {
       agent any
       tools { 
@@ -14,8 +15,8 @@ pipeline {
                 stage('Build Docker image'){
                       //  agent any
                          steps{
-                                sh 'sudo docker build --tag java-pet-clinic:$BUILD_VERSION .'
-                                sh 'sudo docker image save java-pet-clinic:$BUILD_VERSION > pet-clinic-image.zip'
+                                sh 'sudo docker build --tag java-pet-clinic:latest .'
+                                sh 'sudo docker image save java-pet-clinic:latest > pet-clinic-image-"$BUILD_TIMESTAMP".zip'
                          }
                 }
 								
@@ -23,6 +24,7 @@ pipeline {
          post {
                         success {junit '**/target/surefire-reports/TEST-*.xml'
                         archiveArtifacts artifacts: 'pet-clinic-image.zip', fingerprint: true
+                        
                 }
          }
 }
