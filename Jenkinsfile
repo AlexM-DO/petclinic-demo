@@ -14,7 +14,7 @@ pipeline {
                 stage('Build Docker image'){
                       //  agent any
                          steps{
-                                sh 'sudo docker build --tag java-pet-clinic:"$BUILD_TIMESTAMP" .'
+                                sh 'sudo docker build --tag java-pet-clinic:latest .'
                                 sh "sudo docker image save java-pet-clinic:latest > pet-clinic-image-$BUILD_TIMESTAMP.zip"
                          }
                 }
